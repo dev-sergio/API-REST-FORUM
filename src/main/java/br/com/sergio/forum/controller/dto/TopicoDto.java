@@ -1,8 +1,8 @@
 package br.com.sergio.forum.controller.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
 
 import br.com.sergio.forum.model.Topico;
 
@@ -34,9 +34,9 @@ public class TopicoDto {
 	}
 
 
-	public static List<TopicoDto> converter(List<Topico> topicos) {
+	public static Page<TopicoDto> converter(Page<Topico> topicos) {
 		
-		return topicos.stream().map(TopicoDto::new).collect(Collectors.toList()); //pega topico por topico. transforma um por um em um TopicoDto e depois o retorna como uma List.
+		return topicos.map(TopicoDto::new); //pega topico por topico. transforma um por um em um TopicoDto e depois o retorna como um Page.
 	
 	}
 }
